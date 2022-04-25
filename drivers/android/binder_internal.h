@@ -8,12 +8,20 @@
 #include <linux/list.h>
 #include <linux/miscdevice.h>
 #include <linux/mutex.h>
+#if defined(CONFIG_OPLUS_FEATURE_BINDER_STATS_ENABLE)
+#include <linux/notifier.h>
+#endif
 #include <linux/refcount.h>
 #include <linux/stddef.h>
 #include <linux/types.h>
 #include <linux/uidgid.h>
 #include <uapi/linux/android/binderfs.h>
 #include "binder_alloc.h"
+
+#if defined(CONFIG_OPLUS_FEATURE_BINDER_STATS_ENABLE)
+#define OPLUS_MAX_SERVICE_NAME_LEN 32
+#define OPLUS_MAGIC_SERVICE_NAME_OFFSET 76
+#endif
 
 struct binder_context {
 	struct binder_node *binder_context_mgr_node;
@@ -288,6 +296,9 @@ struct binder_node {
 	};
 	bool has_async_transaction;
 	struct list_head async_todo;
+#if defined(CONFIG_OPLUS_FEATURE_BINDER_STATS_ENABLE)
+	char service_name[OPLUS_MAX_SERVICE_NAME_LEN];
+#endif
 };
 
 struct binder_ref_death {
@@ -432,6 +443,9 @@ struct binder_proc {
 	struct hlist_node deferred_work_node;
 	int deferred_work;
 	bool is_dead;
+#if defined(OPLUS_FEATURE_SCHED_ASSIST) && defined(CONFIG_OPLUS_FEATURE_SCHED_ASSIST)
+	int proc_type;
+#endif /* defined(OPLUS_FEATURE_SCHED_ASSIST) && defined(CONFIG_OPLUS_FEATURE_SCHED_ASSIST) */
 
 	struct list_head todo;
 	struct binder_stats stats;
