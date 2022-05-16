@@ -9,6 +9,11 @@ config OPLUS_CHG
 	help
 	  Enables support for the oplus charging framework
 
+config OPLUS_CHG_OOS
+	bool "OPLUS CHARGER OOS"
+	help
+	  Enables support for the oplus OOS charging framework
+
 config OPLUS_SM8350_CHARGER
 	bool "OPLUS SM8350 charger driver"
 	help
