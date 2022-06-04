@@ -69,7 +69,7 @@ static bool short_d_on = false;
 
 static int short_c_battery_status = SHORT_C_BATT_STATUS__NORMAL;
 static int short_c_switch_status = SHORT_C_BATT_SW_STATUS__OFF;
-static int short_c_feature_sw_status = SHORT_C_BATT_FEATURE_SW_STATUS__ON;
+static int short_c_feature_sw_status = SHORT_C_BATT_FEATURE_SW_STATUS__OFF;
 static int short_c_feature_hw_status = SHORT_C_BATT_FEATURE_HW_STATUS__OFF;
 
 __maybe_unused static int __init oplus_short_c_battery_status_init(char *str)
